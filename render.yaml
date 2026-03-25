@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: landmine-soft-portal-backend
+    runtime: python
+    region: singapore
+    plan: starter
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn lms_portal.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "false"
+      - key: DJANGO_SECRET_KEY
+        value: "REPLACE_ME"
+      - key: JWT_SECRET_KEY
+        value: "REPLACE_ME"
+      - key: DB_NAME
+        value: "REPLACE_ME"
+      - key: DB_USER
+        value: "REPLACE_ME"
+      - key: DB_PASSWORD
+        value: "REPLACE_ME"
+      - key: DB_HOST
+        value: "REPLACE_ME"
+      - key: DB_PORT
+        value: "5432"
+

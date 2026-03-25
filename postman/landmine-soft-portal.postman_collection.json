@@ -1,0 +1,155 @@
+{
+  "info": {
+    "name": "Landmine Soft College Portal - API Collection",
+    "_postman_id": "0c4f0f2b-1d5a-4f4f-9f4e-1d7b7b1e0001",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Assignment 2 APIs"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8000" }
+  ],
+  "item": [
+    {
+      "name": "Student Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/student/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "student", "register"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Rahul Kumar\",\n  \"email\": \"rahul@college.edu\",\n  \"phone\": \"9876543210\",\n  \"password\": \"SecurePass@123\",\n  \"branch\": \"CSE\",\n  \"enrollment_year\": 2024\n}"
+        }
+      }
+    },
+    {
+      "name": "Faculty Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/faculty/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "faculty", "register"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Dr. Smith\",\n  \"email\": \"smith@college.edu\",\n  \"phone\": \"9876500000\",\n  \"password\": \"SecurePass@123\",\n  \"department\": \"CSE\",\n  \"designation\": \"Professor\",\n  \"qualification\": \"PhD\",\n  \"experience_years\": 5\n}"
+        }
+      }
+    },
+    {
+      "name": "Admin Register (SuperAdmin only)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/admin/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "admin", "register"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Accountant One\",\n  \"email\": \"accountant@college.edu\",\n  \"phone\": \"9888800000\",\n  \"password\": \"SecurePass@123\",\n  \"role\": \"Accountant\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Student Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/student/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "student", "login"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"rahul@college.edu\",\n  \"password\": \"SecurePass@123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Faculty Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/faculty/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "faculty", "login"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"smith@college.edu\",\n  \"password\": \"SecurePass@123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Admin Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/admin/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "admin", "login"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@college.edu\",\n  \"password\": \"SecurePass@123\"\n}"
+        }
+      }
+    },
+
+    {
+      "name": "Forgot Password (demo mode returns token)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/forgot-password",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "forgot-password"]
+        },
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"rahul@college.edu\"\n}" }
+      }
+    },
+    {
+      "name": "Reset Password",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/reset-password",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "reset-password"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"token\": \"<PUT_RESET_TOKEN_FROM_FORGOT_PASSWORD>\",\n  \"newPassword\": \"NewPass@1234\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Student Profile (JWT protected)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{studentToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/student/profile",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "student", "profile"]
+        }
+      }
+    }
+  ]
+}
+
